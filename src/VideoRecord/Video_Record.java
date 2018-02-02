@@ -1,7 +1,6 @@
 package VideoRecord;
 
 
-import com.ExcelRead.ExcelRead;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.junit.Test;
 import org.monte.media.Format;
@@ -26,40 +25,35 @@ import static org.monte.media.VideoFormatKeys.*;
     {
 
         WebDriver w;
-        ExcelRead excelRead = new ExcelRead();
-        ExcelRead cargoRead = new ExcelRead();
-        ExcelRead AddressBookRead = new ExcelRead();
-        ExcelRead ParticularRead = new ExcelRead();
-        ExcelRead vesselRead = new ExcelRead();
+
         public ScreenRecorder screenRecorder;
 
 
 
         @Test
         public void test01() throws Exception {
-            VideoRecord videoRecord = new VideoRecord();
+            Video_Record videoRecord = new Video_Record();
 
             videoRecord.startRecording(); //Started recording
 
-            excelRead.ExcelReading();
 
             System.setProperty("webdriver.chrome.driver", "F:/chromedriver.exe");
             w = new ChromeDriver();
             w.manage().window().maximize();
-            w.navigate().to("http://192.168.6.178:9000");
+            w.navigate().to("http://localhost:9000");
             w.manage().deleteAllCookies();
             Thread.sleep(2000);
 
             w.findElement(By.id("userName")).clear();
             Thread.sleep(200);
         /*System.out.println("formatCellValue(excelRead.getEmail()).toString()"+new DataFormatter().formatCellValue(excelRead.getEmail()));*/
-            w.findElement(By.id("userName")).sendKeys(new DataFormatter().formatCellValue(excelRead.getEmail()).toString());
+            w.findElement(By.id("userName")).sendKeys("User007");
             Thread.sleep(200);
 
             w.findElement(By.id("password")).clear();
             Thread.sleep(200);
 
-            w.findElement(By.id("password")).sendKeys(new DataFormatter().formatCellValue(excelRead.getPwd()).toString());
+            w.findElement(By.id("password")).sendKeys("User1234568974");
             Thread.sleep(200);
 
             w.findElement(By.xpath("//html/body/div[2]/div/div/div/div/form/button")).click();
@@ -93,4 +87,4 @@ import static org.monte.media.VideoFormatKeys.*;
         }
 
     }
-}
+
